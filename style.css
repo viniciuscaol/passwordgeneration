@@ -1,19 +1,21 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: 0;
+    box-sizing: border-box; /* Alterei de 0 para border-box */
 }
 
 body {
     background: #002339;
     color: #fff;
+    font-family: Arial, sans-serif; /* Adicionei uma fonte padrão */
 }
 
 .container {
     width: 100%;
-    min-height: 93h;
-    margin: 150px auto;
-    width: 600px;
+    max-width: 600px; /* Limite máximo de largura para a container */
+    min-height: 70vh;
+    margin: 100px 100px; /* Centraliza horizontalmente */
+    padding: 0 20px; /* Padding lateral para responsividade */
 }
 
 .display {
@@ -39,16 +41,42 @@ body {
     font-weight: 600;
 }
 
+.caracteres {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    flex-direction: column;
+}
+
+.caracteres p {
+    font-size: 30px;
+}
+
+.caracteres input {
+    width: 38px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: #fff;
+    border-radius: 7px;
+    border: 1px solid #ccc; /* Adicionei borda para visualização */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centraliza o conteúdo */
+    padding: 10px;
+    color: black;
+    text-align: center; /* Centraliza o texto dentro do input */
+}
+
 .display img {
     width: 30px;
     cursor: pointer;
-
 }
 
 .display input {
     outline: 0;
     border: 0;
     font-size: 30px;
+    width: 100%; /* Ocupa a largura total disponível */
 }
 
 .container button img {
@@ -62,7 +90,7 @@ body {
     color: #fff;
     background: #019f55;
     font-size: 22px;
-    padding:  16px 26px;
+    padding: 16px 26px;
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -78,6 +106,7 @@ footer {
     color: white;
     padding: 5px 0;
     position: absolute;
+    bottom: 0; /* Garantir que o footer fique na parte inferior da página */
 }
 
 .footer-content {
@@ -109,8 +138,8 @@ footer p a {
 /* Media queries para responsividade */
 @media (max-width: 600px) {
     .container {
-        margin: 5%;
-        width: 90%;
+        margin: 20px auto; /* Ajuste de margem para centralização */
+        width: 90%; /* Ajuste de largura para responsividade */
     }
 
     .container h1 {

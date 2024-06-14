@@ -1,50 +1,44 @@
 const btn = document.getElementById('btn');
 const senhaE = document.getElementById('senha');
 const copy = document.getElementById('copy');
-
-// btn.addEventListener('click', () => {
-//     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+';
-//     let senhaAleatoria = '';
-//     for (let i = 0; i < 12; i++) {
-//       const randomIndex = Math.floor(Math.random() * caracteres.length);
-//       senhaAleatoria += caracteres[randomIndex];
-//     }
-//     senha.value = senhaAleatoria;
-//   });
-  
-//   copy.addEventListener('click', () => {
-//     senha.select();
-//     document.execCommand('copy');
-//     alert('Copiado para area de transferencia');
-//   });
+const qaunt = document.getElementById('caracteres');
 
 const criarSenha = () => {
-    const comprimento = 12;
+    const comprimento = parseInt(qaunt.value);
+
+    // Validar o comprimento
+    if (isNaN(comprimento) || comprimento <= 4 || comprimento > 20) {
+        alert('A senha deve conter no mínimo 4 e no máximo 20 caracteres.');
+        return;
+    }
+
     let senha = '';
     const maiusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const minusculas = 'abcdefghijklmnopqrstuvwxyz';
-    // const minusculas2 = maiusculas.toLocaleLowerCase;
     const numeros = '0123456789';
-    const caracteres = '!@#$%^&*()-_=+'
+    const caracteres = '!@#$%^&*()-_=+';
     const todoConteudo = maiusculas + minusculas + numeros + caracteres;
 
+    // Garantir pelo menos um caractere de cada conjunto
     senha += maiusculas[Math.floor(Math.random() * maiusculas.length)];
     senha += minusculas[Math.floor(Math.random() * minusculas.length)];
     senha += numeros[Math.floor(Math.random() * numeros.length)];
     senha += caracteres[Math.floor(Math.random() * caracteres.length)];
 
-    while(comprimento > senha.length) {
-        senha += todoConteudo[Math.floor(Math.random () * todoConteudo.length)]
+    // Preencher o resto do comprimento da senha com caracteres aleatórios
+    while (senha.length < comprimento) {
+        senha += todoConteudo[Math.floor(Math.random() * todoConteudo.length)];
     }
 
-    senhaE.value = senha
-
-
+    // Embaralhar a senha para garantir que os caracteres garantidos estejam distribuídos aleatoriamente
+    senha = senha.split('').sort(() => 0.5 - Math.random()).join('');
+    senhaE.value = senha;
 }
 
-btn.addEventListener('click',criarSenha);
+btn.addEventListener('click', criarSenha);
 
 copy.addEventListener('click', () => {
-        senha.select();
-        document.execCommand('copy');
+    senhaE.select();
+    document.execCommand('copy');
+    alert('Copiado para área de transferência');
 });
