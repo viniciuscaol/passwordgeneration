@@ -3,11 +3,12 @@ const senhaE = document.getElementById('senha');
 const copy = document.getElementById('copy');
 const qaunt = document.getElementById('caracteres');
 
+// Função para criar uma senha
 const criarSenha = () => {
     const comprimento = parseInt(qaunt.value);
 
-    // Validar o comprimento
-    if (isNaN(comprimento) || comprimento <= 4 || comprimento > 20) {
+    // Validar o comprimento da senha
+    if (isNaN(comprimento) || comprimento < 4 || comprimento > 20) {
         alert('A senha deve conter no mínimo 4 e no máximo 20 caracteres.');
         return;
     }
@@ -35,8 +36,10 @@ const criarSenha = () => {
     senhaE.value = senha;
 }
 
+// Evento para gerar a senha ao clicar no botão
 btn.addEventListener('click', criarSenha);
 
+// Evento para copiar a senha para a área de transferência
 copy.addEventListener('click', () => {
     senhaE.select();
     document.execCommand('copy');
