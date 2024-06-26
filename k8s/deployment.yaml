@@ -8,6 +8,10 @@ spec:
       app: geradordesenha
   template:
     metadata:
+      annotations:
+        promethues.io/scrape: "true"
+        promethues.io/path: "/metrics"
+        promethues.io/port: "80"
       labels:
         app: geradordesenha
     spec:
